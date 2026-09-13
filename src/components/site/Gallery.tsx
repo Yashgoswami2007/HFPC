@@ -65,7 +65,7 @@ export function Gallery() {
             <button
               type="button"
               onClick={() => setIndex(i)}
-              className="group block w-full text-left"
+              className="group block w-full text-left transition-all duration-500 hover:-translate-y-1 hover:shadow-xl rounded-xl overflow-hidden bg-background"
               aria-label={`Open image: ${item.caption}`}
             >
               <span className="relative block aspect-[4/3] overflow-hidden bg-secondary">
@@ -78,7 +78,7 @@ export function Gallery() {
                   className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"
                 />
               </span>
-              <span className="mt-4 flex items-baseline justify-between gap-4">
+              <span className="mt-4 px-4 pb-4 flex items-baseline justify-between gap-4">
                 <span className="text-sm text-foreground">{item.caption}</span>
                 <span className="label-tech shrink-0 text-brass">{item.category}</span>
               </span>

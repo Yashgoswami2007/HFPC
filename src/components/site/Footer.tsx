@@ -24,7 +24,7 @@ export function Footer() {
                 <li key={item.to}>
                   <Link
                     to={item.to}
-                    className="text-sm text-background/70 transition-colors hover:text-background"
+                    className="text-sm text-background/70 transition-all duration-300 hover:text-background inline-block hover:translate-x-1"
                   >
                     {item.label}
                   </Link>
@@ -41,7 +41,7 @@ export function Footer() {
                   <Link
                     to="/expertise/$slug"
                     params={{ slug: s.slug }}
-                    className="text-sm text-background/70 transition-colors hover:text-background"
+                    className="text-sm text-background/70 transition-all duration-300 hover:text-background inline-block hover:translate-x-1"
                   >
                     {s.name}
                   </Link>

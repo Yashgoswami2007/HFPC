@@ -91,3 +91,19 @@ export function Placeholder({ children }: { children: ReactNode }) {
     </span>
   );
 }
+
+export function HoverWords({ text, className = "" }: { text: string; className?: string }) {
+  const words = text.split(" ");
+  return (
+    <span className={className}>
+      {words.map((word, i) => (
+        <span key={i}>
+          <span className="hover:text-brass transition-colors duration-300 cursor-default">
+            {word}
+          </span>
+          {i < words.length - 1 ? " " : ""}
+        </span>
+      ))}
+    </span>
+  );
+}

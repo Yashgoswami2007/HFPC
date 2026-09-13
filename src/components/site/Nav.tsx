@@ -2,6 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { nav, services } from "@/data/hfpc";
 import { Logo } from "./Logo";
+import { NavAbout } from "./NavAbout";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -47,7 +48,13 @@ export function Nav() {
           <div className="flex items-center gap-6">
             <nav aria-label="Primary" className="hidden items-center gap-6 lg:flex">
               {nav.map((item) =>
-                item.label === "Expertise" ? (
+                item.label === "About" ? (
+                  <NavAbout key={item.to}>
+                    <button className="label-tech py-2 text-foreground/80 transition-colors hover:text-brass">
+                      {item.label}
+                    </button>
+                  </NavAbout>
+                ) : item.label === "Expertise" ? (
                   <div
                     key={item.to}
                     className="relative"
@@ -128,17 +135,25 @@ export function Nav() {
       {open ? (
         <div id="mobile-nav" className="max-h-[calc(100vh-4.5rem)] overflow-y-auto border-t border-border bg-background lg:hidden">
           <nav aria-label="Mobile" className="shell flex flex-col py-4">
-            {nav.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                className="border-b border-border py-4 font-display text-2xl text-foreground"
-                activeProps={{ className: "border-b border-border py-4 font-display text-2xl text-brass" }}
-                activeOptions={{ exact: item.to === "/" }}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {nav.map((item) =>
+              item.label === "About" ? (
+                <NavAbout key={item.to}>
+                  <button className="border-b border-border py-4 text-left font-display text-2xl text-foreground transition-colors hover:text-brass">
+                    {item.label}
+                  </button>
+                </NavAbout>
+              ) : (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  className="border-b border-border py-4 font-display text-2xl text-foreground"
+                  activeProps={{ className: "border-b border-border py-4 font-display text-2xl text-brass" }}
+                  activeOptions={{ exact: item.to === "/" }}
+                >
+                  {item.label}
+                </Link>
+              ),
+            )}
             <Link to="/start-a-project" className="btn-base btn-brass mt-6 w-full">
               Start a Project
             </Link>

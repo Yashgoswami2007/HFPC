@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ApproachRouteImport } from './routes/approach'
+import { Route as CareersRouteImport } from './routes/careers'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as ExpertiseIndexRouteImport } from './routes/expertise.index'
 import { Route as ExpertiseSlugRouteImport } from './routes/expertise.$slug'
@@ -35,6 +37,16 @@ const AboutRoute = AboutRouteImport.update({
 const ApproachRoute = ApproachRouteImport.update({
   id: '/approach',
   path: '/approach',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CareersRoute = CareersRouteImport.update({
+  id: '/careers',
+  path: '/careers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GalleryRoute = GalleryRouteImport.update({
@@ -87,6 +99,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/approach': typeof ApproachRoute
+  '/careers': typeof CareersRoute
+  '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/expertise/$slug': typeof ExpertiseSlugRoute
   '/insights/$slug': typeof InsightsSlugRoute
@@ -101,6 +115,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/approach': typeof ApproachRoute
+  '/careers': typeof CareersRoute
+  '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/expertise/$slug': typeof ExpertiseSlugRoute
   '/insights/$slug': typeof InsightsSlugRoute
@@ -116,6 +132,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/approach': typeof ApproachRoute
+  '/careers': typeof CareersRoute
+  '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/expertise/$slug': typeof ExpertiseSlugRoute
   '/insights/$slug': typeof InsightsSlugRoute
@@ -132,6 +150,8 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/approach'
+    | '/careers'
+    | '/contact'
     | '/gallery'
     | '/expertise/$slug'
     | '/insights/$slug'
@@ -146,6 +166,8 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/approach'
+    | '/careers'
+    | '/contact'
     | '/gallery'
     | '/expertise/$slug'
     | '/insights/$slug'
@@ -160,6 +182,8 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/approach'
+    | '/careers'
+    | '/contact'
     | '/gallery'
     | '/expertise/$slug'
     | '/insights/$slug'
@@ -175,6 +199,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ApproachRoute: typeof ApproachRoute
+  CareersRoute: typeof CareersRoute
+  ContactRoute: typeof ContactRoute
   GalleryRoute: typeof GalleryRoute
   ExpertiseSlugRoute: typeof ExpertiseSlugRoute
   InsightsSlugRoute: typeof InsightsSlugRoute
@@ -207,6 +233,20 @@ declare module '@tanstack/react-router' {
       path: '/approach'
       fullPath: '/approach'
       preLoaderRoute: typeof ApproachRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/careers': {
+      id: '/careers'
+      path: '/careers'
+      fullPath: '/careers'
+      preLoaderRoute: typeof CareersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gallery': {
@@ -279,6 +319,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ApproachRoute: ApproachRoute,
+  CareersRoute: CareersRoute,
+  ContactRoute: ContactRoute,
   GalleryRoute: GalleryRoute,
   ExpertiseSlugRoute: ExpertiseSlugRoute,
   InsightsSlugRoute: InsightsSlugRoute,

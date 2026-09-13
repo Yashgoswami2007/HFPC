@@ -21,11 +21,29 @@ export function EnquiryForm() {
   function submit(e: React.FormEvent) {
     e.preventDefault();
     const next: Record<string, string> = {};
-    if (!values.name.trim()) next.name = "Enter your name.";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) next.email = "Enter a valid email address.";
-    if (values.message.trim().length < 10) next.message = "Please add a short message.";
+    if (!values.name.trim()) next["name"] = "Enter your name.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) next["email"] = "Enter a valid email address.";
+    if (values.message.trim().length < 10) next["message"] = "Please add a short message.";
     setErrors(next);
-    if (Object.keys(next).length === 0) setSent(true);
+    
+    if (Object.keys(next).length === 0) {
+      const message = `New Enquiry from Website:
+Name: ${values.name}
+Company: ${values.company || "N/A"}
+Email: ${values.email}
+Phone: ${values.phone || "N/A"}
+Facility Type: ${values.facility || "N/A"}
+Service of Interest: ${values.service || "N/A"}
+
+Message:
+${values.message}`;
+
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/918791588728?text=${encodedMessage}`;
+      
+      window.open(whatsappUrl, "_blank");
+      setSent(true);
+    }
   }
 
   if (sent) {
@@ -48,9 +66,9 @@ export function EnquiryForm() {
             Name
           </label>
           <input id="c-name" className="field" value={values.name} onChange={(e) => set("name", e.target.value)} />
-          {errors.name ? (
+          {errors["name"] ? (
             <p role="alert" className="mt-2 text-xs text-destructive">
-              {errors.name}
+              {errors["name"]}
             </p>
           ) : null}
         </div>
@@ -76,9 +94,9 @@ export function EnquiryForm() {
             value={values.email}
             onChange={(e) => set("email", e.target.value)}
           />
-          {errors.email ? (
+          {errors["email"] ? (
             <p role="alert" className="mt-2 text-xs text-destructive">
-              {errors.email}
+              {errors["email"]}
             </p>
           ) : null}
         </div>
@@ -143,9 +161,9 @@ export function EnquiryForm() {
           onChange={(e) => set("message", e.target.value)}
           placeholder="Tell us about the facility and what you need planned."
         />
-        {errors.message ? (
+        {errors["message"] ? (
           <p role="alert" className="mt-2 text-xs text-destructive">
-            {errors.message}
+            {errors["message"]}
           </p>
         ) : null}
       </div>

@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState, type ElementType, type ReactNode } from "react";
+import { type ElementType, type ReactNode } from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 type RevealProps = {
   children: ReactNode;
@@ -7,40 +9,24 @@ type RevealProps = {
   className?: string;
 };
 
-/** Scroll-triggered fade/slide reveal. Falls back to visible without IO support. */
+/** Scroll-triggered fade/slide reveal using framer-motion. */
 export function Reveal({ children, as, delay = 0, className = "" }: RevealProps) {
-  const Tag = (as ?? "div") as ElementType;
-  const ref = useRef<HTMLElement | null>(null);
-  const [shown, setShown] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || typeof IntersectionObserver === "undefined") {
-      setShown(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setShown(true);
-            io.disconnect();
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+  const Tag = (as ?? "div") as any;
+  const MotionTag = motion.create(Tag);
 
   return (
-    <Tag
-      ref={ref}
-      style={{ transitionDelay: `${delay}ms` }}
-      className={`reveal ${shown ? "reveal-in" : ""} ${className}`}
+    <MotionTag
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "0px 0px -8% 0px" }}
+      transition={{ 
+        duration: 0.9, 
+        delay: delay / 1000, // delay is passed in ms usually, framer-motion uses seconds
+        ease: [0.22, 1, 0.36, 1] 
+      }}
+      className={className}
     >
       {children}
-    </Tag>
+    </MotionTag>
   );
 }

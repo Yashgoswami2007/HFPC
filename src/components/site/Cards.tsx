@@ -36,7 +36,7 @@ export function SectorCard({ sector, delay = 0 }: { sector: Sector; delay?: numb
       <Link
         to="/sectors/$slug"
         params={{ slug: sector.slug }}
-        className="group flex h-full flex-col"
+        className="group flex h-full flex-col transition-all duration-500 hover:-translate-y-1 hover:shadow-lg rounded-xl overflow-hidden"
       >
         <div className="relative aspect-[5/4] overflow-hidden bg-secondary">
           <img
@@ -70,7 +70,7 @@ export function InsightCard({ insight, delay = 0 }: { insight: Insight; delay?: 
       <Link
         to="/insights/$slug"
         params={{ slug: insight.slug }}
-        className="group flex h-full flex-col border border-border bg-card p-7 transition-colors hover:border-brass"
+        className="group flex h-full flex-col border border-border bg-card p-7 transition-all duration-500 hover:border-brass hover:-translate-y-1 hover:shadow-lg rounded-xl"
       >
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           <span className="label-tech text-brass">{insight.category}</span>

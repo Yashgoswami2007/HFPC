@@ -50,14 +50,14 @@ export function PageHero({
 
           {image ? (
             <Reveal delay={140} className="relative">
-              <div className="corner-ticks hairline relative aspect-[4/3] overflow-hidden">
+              <div className="corner-ticks hairline relative aspect-[4/3] overflow-hidden group">
                 <img
                   src={image}
                   alt={imageAlt ?? ""}
                   loading="lazy"
                   width={1200}
                   height={900}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
             </Reveal>

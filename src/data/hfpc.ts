@@ -9,11 +9,12 @@
  */
 
 import heroBoh from "@/assets/hero-boh.jpg";
+import heroN from "@/assets/hero-n.png";
 import svcKitchen from "@/assets/svc-kitchen.jpg";
-import svcFnb from "@/assets/svc-fnb.jpg";
+import svcFnb from "@/assets/img 4.jpg";
 import svcBoh from "@/assets/svc-boh.jpg";
 import svcLaundry from "@/assets/svc-laundry.jpg";
-import svcWaste from "@/assets/svc-waste.jpg";
+import svcWaste from "@/assets/img 5.jpg";
 import svcMep from "@/assets/svc-mep.jpg";
 import svcDocs from "@/assets/svc-docs.jpg";
 import svcSite from "@/assets/svc-site.jpg";
@@ -27,6 +28,7 @@ import sectorInstitutional from "@/assets/sector-institutional.jpg";
 
 export const images = {
   heroBoh,
+  heroN,
   svcKitchen,
   svcFnb,
   svcBoh,
@@ -50,7 +52,7 @@ export const company = {
   legalName: "Hospitality Facilities Planning Consultancy",
   disciplines: "Commercial Kitchens | Back-of-House | Facility Planning",
   positioning: "Commercial Kitchen & Hospitality Facilities Planning",
-  motto: "Plan better. Operate smarter. Build with precision.",
+  motto: "PLAN THE FLOW. PERFECT THE OPERATION.",
   fourVerbs: ["Plan", "Design", "Co-ordinate", "Deliver"],
   statement:
     "HFPC — Hospitality Facilities Planning Consultancy — provides specialist planning and consultancy services for hospitality and food-service back-of-house environments.",

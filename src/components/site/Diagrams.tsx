@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { briefToKitchen, flows, process } from "@/data/hfpc";
 import { Reveal } from "./Reveal";
+import { HoverWords } from "./Primitives";
 
 /** Facility flow: horizontal on desktop, vertical on mobile, with a drawn baseline. */
 export function FacilityFlow() {
@@ -113,24 +114,48 @@ export function BriefSequence() {
   );
 }
 
+import { ArrowRight } from "lucide-react";
+
 /** Ten-stage project process (profile page 7). */
 export function ProcessTimeline() {
   return (
-    <ol className="mt-14">
+    <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
       {process.map((step, i) => (
         <Reveal
           key={step.index}
           delay={i * 40}
-          as="li"
-          className="group grid gap-4 border-t border-border py-8 transition-colors hover:border-brass md:grid-cols-[6rem_minmax(0,1fr)_minmax(0,1.2fr)] md:gap-10"
         >
-          <span className="label-tech text-brass">{step.index}</span>
-          <h3 className="font-display text-2xl leading-tight text-foreground">{step.name}</h3>
-          <p className="text-sm leading-relaxed text-muted-foreground">{step.body}</p>
+          <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-border bg-background p-6 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-brass/10 hover:border-brass/50">
+            
+            {/* Background Hover Effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-brass/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+            
+            {/* Step Number */}
+            <div className="relative z-10 mb-8 flex items-center justify-between">
+              <span className="text-5xl font-display font-light text-brass/30 transition-all duration-500 group-hover:text-brass group-hover:scale-110 origin-left">
+                {step.index}
+              </span>
+              <div className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background shadow-sm transition-all duration-500 group-hover:border-brass group-hover:bg-brass">
+                <ArrowRight className="h-4 w-4 text-muted-foreground transition-all duration-500 group-hover:translate-x-0.5 group-hover:text-background" />
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="relative z-10 transition-transform duration-500 group-hover:translate-x-1">
+              <h3 className="mb-3 font-display text-xl leading-tight text-foreground">
+                {step.name}
+              </h3>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                {step.body}
+              </p>
+            </div>
+
+            {/* Bottom highlight line */}
+            <div className="absolute bottom-0 left-0 h-1 w-0 bg-brass transition-all duration-700 ease-out group-hover:w-full" />
+          </div>
         </Reveal>
       ))}
-      <li aria-hidden className="border-t border-border" />
-    </ol>
+    </div>
   );
 }
 
@@ -145,13 +170,14 @@ export function TechnicalEquation() {
           {parts.map((part, i) => (
             <Reveal key={part} delay={i * 110} className="flex items-baseline gap-6">
               {i > 0 ? (
-                <span aria-hidden className="font-display text-3xl text-brass/70">
+                <span aria-hidden className="font-display text-3xl text-brass/70 hover:text-brass transition-colors duration-300">
                   +
                 </span>
               ) : null}
-              <span className="font-display text-3xl uppercase leading-none tracking-[0.04em] text-background sm:text-4xl lg:text-5xl">
-                {part}
-              </span>
+              <HoverWords 
+                text={part} 
+                className="font-display text-3xl uppercase leading-none tracking-[0.04em] text-background sm:text-4xl lg:text-5xl"
+              />
             </Reveal>
           ))}
         </div>
@@ -159,16 +185,14 @@ export function TechnicalEquation() {
         <Reveal delay={560}>
           <div className="mt-10 flex items-center gap-6">
             <span aria-hidden className="h-px flex-1 bg-background/25" />
-            <span className="font-display text-4xl text-brass">=</span>
+            <span className="font-display text-4xl text-brass hover:text-brass transition-colors duration-300">=</span>
             <span aria-hidden className="h-px flex-1 bg-background/25" />
           </div>
         </Reveal>
 
         <Reveal delay={660}>
           <p className="display-xl mt-10 text-background">
-            A facility
-            <br />
-            that works.
+            <HoverWords text="A facility that works." />
           </p>
         </Reveal>
       </div>
