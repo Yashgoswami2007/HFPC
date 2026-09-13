@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ExpertiseIndexRouteImport } from './routes/expertise.index'
+import { Route as ExpertiseSlugRouteImport } from './routes/expertise.$slug'
+import { Route as SectorsIndexRouteImport } from './routes/sectors.index'
+import { Route as SectorsSlugRouteImport } from './routes/sectors.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExpertiseIndexRoute = ExpertiseIndexRouteImport.update({
+  id: '/expertise/',
+  path: '/expertise/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExpertiseSlugRoute = ExpertiseSlugRouteImport.update({
+  id: '/expertise/$slug',
+  path: '/expertise/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SectorsIndexRoute = SectorsIndexRouteImport.update({
+  id: '/sectors/',
+  path: '/sectors/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SectorsSlugRoute = SectorsSlugRouteImport.update({
+  id: '/sectors/$slug',
+  path: '/sectors/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/expertise/$slug': typeof ExpertiseSlugRoute
+  '/sectors/$slug': typeof SectorsSlugRoute
+  '/expertise/': typeof ExpertiseIndexRoute
+  '/sectors/': typeof SectorsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/expertise/$slug': typeof ExpertiseSlugRoute
+  '/sectors/$slug': typeof SectorsSlugRoute
+  '/expertise': typeof ExpertiseIndexRoute
+  '/sectors': typeof SectorsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/expertise/$slug': typeof ExpertiseSlugRoute
+  '/sectors/$slug': typeof SectorsSlugRoute
+  '/expertise/': typeof ExpertiseIndexRoute
+  '/sectors/': typeof SectorsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/expertise/$slug'
+    | '/sectors/$slug'
+    | '/expertise/'
+    | '/sectors/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/expertise/$slug'
+    | '/sectors/$slug'
+    | '/expertise'
+    | '/sectors'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/expertise/$slug'
+    | '/sectors/$slug'
+    | '/expertise/'
+    | '/sectors/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ExpertiseSlugRoute: typeof ExpertiseSlugRoute
+  SectorsSlugRoute: typeof SectorsSlugRoute
+  ExpertiseIndexRoute: typeof ExpertiseIndexRoute
+  SectorsIndexRoute: typeof SectorsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/expertise/': {
+      id: '/expertise/'
+      path: '/expertise'
+      fullPath: '/expertise/'
+      preLoaderRoute: typeof ExpertiseIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/expertise/$slug': {
+      id: '/expertise/$slug'
+      path: '/expertise/$slug'
+      fullPath: '/expertise/$slug'
+      preLoaderRoute: typeof ExpertiseSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sectors/': {
+      id: '/sectors/'
+      path: '/sectors'
+      fullPath: '/sectors/'
+      preLoaderRoute: typeof SectorsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sectors/$slug': {
+      id: '/sectors/$slug'
+      path: '/sectors/$slug'
+      fullPath: '/sectors/$slug'
+      preLoaderRoute: typeof SectorsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ExpertiseSlugRoute: ExpertiseSlugRoute,
+  SectorsSlugRoute: SectorsSlugRoute,
+  ExpertiseIndexRoute: ExpertiseIndexRoute,
+  SectorsIndexRoute: SectorsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
