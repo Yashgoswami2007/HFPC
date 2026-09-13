@@ -11,8 +11,14 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as ApproachRouteImport } from './routes/approach'
+import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as ExpertiseIndexRouteImport } from './routes/expertise.index'
 import { Route as ExpertiseSlugRouteImport } from './routes/expertise.$slug'
+import { Route as InsightsIndexRouteImport } from './routes/insights.index'
+import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
+import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
+import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 import { Route as SectorsIndexRouteImport } from './routes/sectors.index'
 import { Route as SectorsSlugRouteImport } from './routes/sectors.$slug'
 
@@ -26,6 +32,16 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApproachRoute = ApproachRouteImport.update({
+  id: '/approach',
+  path: '/approach',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ExpertiseIndexRoute = ExpertiseIndexRouteImport.update({
   id: '/expertise/',
   path: '/expertise/',
@@ -34,6 +50,26 @@ const ExpertiseIndexRoute = ExpertiseIndexRouteImport.update({
 const ExpertiseSlugRoute = ExpertiseSlugRouteImport.update({
   id: '/expertise/$slug',
   path: '/expertise/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsIndexRoute = InsightsIndexRouteImport.update({
+  id: '/insights/',
+  path: '/insights/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsSlugRoute = InsightsSlugRouteImport.update({
+  id: '/insights/$slug',
+  path: '/insights/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
+  id: '/projects/',
+  path: '/projects/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
+  id: '/projects/$slug',
+  path: '/projects/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SectorsIndexRoute = SectorsIndexRouteImport.update({
@@ -50,26 +86,44 @@ const SectorsSlugRoute = SectorsSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/approach': typeof ApproachRoute
+  '/gallery': typeof GalleryRoute
   '/expertise/$slug': typeof ExpertiseSlugRoute
+  '/insights/$slug': typeof InsightsSlugRoute
+  '/projects/$slug': typeof ProjectsSlugRoute
   '/sectors/$slug': typeof SectorsSlugRoute
   '/expertise/': typeof ExpertiseIndexRoute
+  '/insights/': typeof InsightsIndexRoute
+  '/projects/': typeof ProjectsIndexRoute
   '/sectors/': typeof SectorsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/approach': typeof ApproachRoute
+  '/gallery': typeof GalleryRoute
   '/expertise/$slug': typeof ExpertiseSlugRoute
+  '/insights/$slug': typeof InsightsSlugRoute
+  '/projects/$slug': typeof ProjectsSlugRoute
   '/sectors/$slug': typeof SectorsSlugRoute
   '/expertise': typeof ExpertiseIndexRoute
+  '/insights': typeof InsightsIndexRoute
+  '/projects': typeof ProjectsIndexRoute
   '/sectors': typeof SectorsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/approach': typeof ApproachRoute
+  '/gallery': typeof GalleryRoute
   '/expertise/$slug': typeof ExpertiseSlugRoute
+  '/insights/$slug': typeof InsightsSlugRoute
+  '/projects/$slug': typeof ProjectsSlugRoute
   '/sectors/$slug': typeof SectorsSlugRoute
   '/expertise/': typeof ExpertiseIndexRoute
+  '/insights/': typeof InsightsIndexRoute
+  '/projects/': typeof ProjectsIndexRoute
   '/sectors/': typeof SectorsIndexRoute
 }
 export interface FileRouteTypes {
@@ -77,34 +131,58 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/approach'
+    | '/gallery'
     | '/expertise/$slug'
+    | '/insights/$slug'
+    | '/projects/$slug'
     | '/sectors/$slug'
     | '/expertise/'
+    | '/insights/'
+    | '/projects/'
     | '/sectors/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/approach'
+    | '/gallery'
     | '/expertise/$slug'
+    | '/insights/$slug'
+    | '/projects/$slug'
     | '/sectors/$slug'
     | '/expertise'
+    | '/insights'
+    | '/projects'
     | '/sectors'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/approach'
+    | '/gallery'
     | '/expertise/$slug'
+    | '/insights/$slug'
+    | '/projects/$slug'
     | '/sectors/$slug'
     | '/expertise/'
+    | '/insights/'
+    | '/projects/'
     | '/sectors/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ApproachRoute: typeof ApproachRoute
+  GalleryRoute: typeof GalleryRoute
   ExpertiseSlugRoute: typeof ExpertiseSlugRoute
+  InsightsSlugRoute: typeof InsightsSlugRoute
+  ProjectsSlugRoute: typeof ProjectsSlugRoute
   SectorsSlugRoute: typeof SectorsSlugRoute
   ExpertiseIndexRoute: typeof ExpertiseIndexRoute
+  InsightsIndexRoute: typeof InsightsIndexRoute
+  ProjectsIndexRoute: typeof ProjectsIndexRoute
   SectorsIndexRoute: typeof SectorsIndexRoute
 }
 
@@ -124,6 +202,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/approach': {
+      id: '/approach'
+      path: '/approach'
+      fullPath: '/approach'
+      preLoaderRoute: typeof ApproachRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/expertise/': {
       id: '/expertise/'
       path: '/expertise'
@@ -136,6 +228,34 @@ declare module '@tanstack/react-router' {
       path: '/expertise/$slug'
       fullPath: '/expertise/$slug'
       preLoaderRoute: typeof ExpertiseSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights/': {
+      id: '/insights/'
+      path: '/insights'
+      fullPath: '/insights/'
+      preLoaderRoute: typeof InsightsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights/$slug': {
+      id: '/insights/$slug'
+      path: '/insights/$slug'
+      fullPath: '/insights/$slug'
+      preLoaderRoute: typeof InsightsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/': {
+      id: '/projects/'
+      path: '/projects'
+      fullPath: '/projects/'
+      preLoaderRoute: typeof ProjectsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/$slug': {
+      id: '/projects/$slug'
+      path: '/projects/$slug'
+      fullPath: '/projects/$slug'
+      preLoaderRoute: typeof ProjectsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sectors/': {
@@ -158,9 +278,15 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ApproachRoute: ApproachRoute,
+  GalleryRoute: GalleryRoute,
   ExpertiseSlugRoute: ExpertiseSlugRoute,
+  InsightsSlugRoute: InsightsSlugRoute,
+  ProjectsSlugRoute: ProjectsSlugRoute,
   SectorsSlugRoute: SectorsSlugRoute,
   ExpertiseIndexRoute: ExpertiseIndexRoute,
+  InsightsIndexRoute: InsightsIndexRoute,
+  ProjectsIndexRoute: ProjectsIndexRoute,
   SectorsIndexRoute: SectorsIndexRoute,
 }
 export const routeTree = rootRouteImport
