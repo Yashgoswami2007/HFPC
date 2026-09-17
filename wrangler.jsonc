@@ -5,7 +5,14 @@
     "compatibility_flags": [
         "nodejs_compat"
     ],
-    "main": "@tanstack/react-start/server-entry",
+    "main": ".output/server/index.mjs",
+    "assets": {
+        "binding": "ASSETS",
+        "directory": ".output/public"
+    },
+    "build": {
+        "command": "npm run build"
+    },
     "observability": {
         "enabled": true
     }
