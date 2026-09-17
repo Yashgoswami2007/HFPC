@@ -46,64 +46,77 @@ export function Nav() {
           <Logo compact={scrolled} />
 
           <div className="flex items-center gap-6">
-            <nav aria-label="Primary" className="hidden items-center gap-6 lg:flex">
-              {nav.map((item) =>
-                item.label === "About" ? (
-                  <NavAbout key={item.to}>
-                    <button className="label-tech py-2 text-foreground/80 transition-colors hover:text-brass">
-                      {item.label}
-                    </button>
-                  </NavAbout>
-                ) : item.label === "Expertise" ? (
-                  <div
-                    key={item.to}
-                    className="relative"
-                    onMouseEnter={() => setMenu(true)}
-                    onMouseLeave={() => setMenu(false)}
-                  >
-                    <Link
-                      to={item.to}
-                      className="label-tech py-2 text-foreground/80 transition-colors hover:text-brass"
-                      activeProps={{ className: "label-tech py-2 text-brass" }}
+            <nav aria-label="Primary" className="flex items-center gap-4 lg:gap-6">
+              {nav.map((item) => {
+                const isMobileVisible = item.label === "Home" || item.label === "About";
+                const displayClass = isMobileVisible ? "block" : "hidden lg:block";
+
+                if (item.label === "About") {
+                  return (
+                    <div key={item.to} className={displayClass}>
+                      <NavAbout>
+                        <button className="label-tech py-2 text-foreground/80 transition-colors hover:text-brass">
+                          {item.label}
+                        </button>
+                      </NavAbout>
+                    </div>
+                  );
+                }
+                
+                if (item.label === "Expertise") {
+                  return (
+                    <div
+                      key={item.to}
+                      className={`relative ${displayClass}`}
+                      onMouseEnter={() => setMenu(true)}
+                      onMouseLeave={() => setMenu(false)}
                     >
-                      {item.label}
-                    </Link>
-                    {menu ? (
-                      <div className="absolute left-1/2 top-full z-50 w-[30rem] -translate-x-1/2 border border-border bg-card p-2 shadow-[0_24px_60px_-30px_rgba(32,33,30,0.35)]">
-                        <ul className="grid grid-cols-2 gap-1">
-                          {services.map((s) => (
-                            <li key={s.slug}>
-                              <Link
-                                to="/expertise/$slug"
-                                params={{ slug: s.slug }}
-                                className="group flex gap-3 p-3 transition-colors hover:bg-secondary"
-                              >
-                                <span className="label-tech pt-1 text-brass">{s.index}</span>
-                                <span className="text-sm leading-snug text-foreground group-hover:text-brass">
-                                  {s.name}
-                                </span>
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ) : null}
-                  </div>
-                ) : (
+                      <Link
+                        to={item.to}
+                        className="label-tech py-2 text-foreground/80 transition-colors hover:text-brass"
+                        activeProps={{ className: "label-tech py-2 text-brass" }}
+                      >
+                        {item.label}
+                      </Link>
+                      {menu ? (
+                        <div className="absolute left-1/2 top-full z-50 w-[30rem] -translate-x-1/2 border border-border bg-card p-2 shadow-[0_24px_60px_-30px_rgba(32,33,30,0.35)]">
+                          <ul className="grid grid-cols-2 gap-1">
+                            {services.map((s) => (
+                              <li key={s.slug}>
+                                <Link
+                                  to="/expertise/$slug"
+                                  params={{ slug: s.slug }}
+                                  className="group flex gap-3 p-3 transition-colors hover:bg-secondary"
+                                >
+                                  <span className="label-tech pt-1 text-brass">{s.index}</span>
+                                  <span className="text-sm leading-snug text-foreground group-hover:text-brass">
+                                    {s.name}
+                                  </span>
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ) : null}
+                    </div>
+                  );
+                }
+
+                return (
                   <Link
                     key={item.to}
                     to={item.to}
-                    className="label-tech py-2 text-foreground/80 transition-colors hover:text-brass"
+                    className={`label-tech py-2 text-foreground/80 transition-colors hover:text-brass ${displayClass}`}
                     activeProps={{ className: "label-tech py-2 text-brass" }}
                     activeOptions={{ exact: item.to === "/" }}
                   >
                     {item.label}
                   </Link>
-                ),
-              )}
+                );
+              })}
             </nav>
 
-            <Link to="/start-a-project" className="btn-base btn-brass hidden md:inline-flex">
+            <Link to="/contact" className="btn-base btn-brass hidden md:inline-flex">
               Start a Project
             </Link>
 
@@ -135,26 +148,19 @@ export function Nav() {
       {open ? (
         <div id="mobile-nav" className="max-h-[calc(100vh-4.5rem)] overflow-y-auto border-t border-border bg-background lg:hidden">
           <nav aria-label="Mobile" className="shell flex flex-col py-4">
-            {nav.map((item) =>
-              item.label === "About" ? (
-                <NavAbout key={item.to}>
-                  <button className="border-b border-border py-4 text-left font-display text-2xl text-foreground transition-colors hover:text-brass">
-                    {item.label}
-                  </button>
-                </NavAbout>
-              ) : (
+            {nav
+              .filter((item) => item.label !== "Home" && item.label !== "About")
+              .map((item) => (
                 <Link
                   key={item.to}
                   to={item.to}
                   className="border-b border-border py-4 font-display text-2xl text-foreground"
                   activeProps={{ className: "border-b border-border py-4 font-display text-2xl text-brass" }}
-                  activeOptions={{ exact: item.to === "/" }}
                 >
                   {item.label}
                 </Link>
-              ),
-            )}
-            <Link to="/start-a-project" className="btn-base btn-brass mt-6 w-full">
+              ))}
+            <Link to="/contact" className="btn-base btn-brass mt-6 w-full">
               Start a Project
             </Link>
           </nav>

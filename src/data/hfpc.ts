@@ -77,7 +77,6 @@ export const contact = {
    * pages (piyush.hfpc@gmail.com and piyush.hacs@gmail.com). The first is used
    * across the site; HFPC to confirm the correct address.
    */
-  emailNote: "[EMAIL ADDRESS TO BE CONFIRMED BY HFPC]",
 };
 
 /** Page 2 of the profile — the four ideas HFPC plans around. */
