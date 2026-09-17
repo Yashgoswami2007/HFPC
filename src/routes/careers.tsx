@@ -48,7 +48,7 @@ function Careers() {
               We are looking for passionate individuals to join our team. If you have what it takes to shape the future of hospitality facilities planning, we would love to hear from you. Please fill out our application form to get started.
             </p>
             <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLScnBULtUXUMDhkzADfgpw_SRpo-1jbrgL_tAjiiSuBU6dakWQ/viewform?usp=dialog"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSeWOUtlVhaSRjfZK84_tnF2vERM6YFrvxS3cbIXPG6NzelfhA/viewform?usp=publish-editor"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-base btn-brass mt-4 inline-flex"
