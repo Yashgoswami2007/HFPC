@@ -92,7 +92,7 @@ function Home() {
               
               <Reveal delay={300}>
                 <div className="flex flex-wrap items-center gap-8 mt-6">
-                  <Link to="/start-a-project" className="bg-[#4a2e1b] text-white px-8 py-3 rounded-full text-xs font-medium tracking-[0.1em] hover:bg-[#321f12] hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-2 uppercase shadow-sm">
+                  <Link to="/contact" className="bg-[#4a2e1b] text-white px-8 py-3 rounded-full text-xs font-medium tracking-[0.1em] hover:bg-[#321f12] hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-2 uppercase shadow-sm">
                     START A PROJECT <span>&rarr;</span>
                   </Link>
                   <Link to="/expertise" className="text-foreground text-xs font-medium tracking-[0.1em] uppercase flex items-center gap-2 group border-b border-foreground/30 pb-1 hover:border-foreground hover:text-[#d9774b] transition-colors">
