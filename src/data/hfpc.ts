@@ -1075,7 +1075,7 @@ export const nav = [
   { label: "About", to: "/about" },
   { label: "Expertise", to: "/expertise" },
   { label: "Sectors", to: "/sectors" },
-  { label: "Projects", to: "/projects" },
+  // { label: "Projects", to: "/projects" },
   { label: "Approach", to: "/approach" },
   { label: "Insights", to: "/insights" },
   { label: "Careers", to: "/careers" },

@@ -443,6 +443,7 @@ function Home() {
       </Section>
 
       {/* 06 — PROJECTS */}
+      {/*
       <Section>
         <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-end">
           <SectionHeader
@@ -471,6 +472,7 @@ function Home() {
           ))}
         </div>
       </Section>
+      */}
 
       {/* 07 — APPROACH */}
       <Section tone="muted">
